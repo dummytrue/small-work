@@ -1,0 +1,10 @@
+f1=["A to C","A to B","C to B"]
+f2=["A to C"]
+f3=["B to A", "B to C", "A to c"]
+f=f1+f2+f3
+i=2
+l=input("½Ð¿é¤J½L¼Æ")
+l=int(l)
+while i < l-1:
+    f=f+f2+f
+    i+=1

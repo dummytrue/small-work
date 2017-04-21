@@ -1,0 +1,36 @@
+#start: 檔案位置
+#save: 存檔位置
+def rearrange(start,save):
+    file = open(start, 'r')
+    import csv
+    new=list(csv.reader(file))
+    file.close
+
+    dic=[]
+    for i in new:
+        if i[1] not in set(dic):
+            dic.append(i[1])
+
+    answer=[dic]
+
+    import collections
+    new_dic=collections.defaultdict(list)
+    for i in new:
+        sub=[i[1],i[2]]
+        new_dic[i[0]].append(sub)
+
+    ele={i[0] for i in new}
+
+    for i in ele:
+        matri=[0 for i in range(len(dic))]
+        matri[0]=i
+        for j in new_dic.get(i):
+            matri[dic.index(j[0])]=j[1]
+        answer.append(matri)
+
+    final=open(save,"w")
+    w=csv.writer(final)
+    w.writerows(answer)
+    final.close()
+
+ 
