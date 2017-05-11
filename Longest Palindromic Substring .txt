@@ -1,0 +1,32 @@
+1st:
+class Solution(object):
+    def longestPalindrome(self, s):
+        ans=s[0]
+        for i in range(len(s)):
+            match=[j for j,k in enumerate(s[i+1:]) if k==s[i]]
+            if match:
+                for l in match:
+                    che=list(s[i:i+l+2])
+                    che.reverse()
+                    if list(s[i:i+l+2])==che and len(s[i:i+l+2])>len(ans):
+                        ans=s[i:i+l+2]
+        return ans
+
+2nd(more efficient):
+class Solution(object):
+    def longestPalindrome(self, s):
+        ss=set(s)
+        if len(set(s))==1:
+            return s
+        else:
+            ans=s[0]
+            
+            for i in ss:
+                t1=[j for j,k in enumerate(s) if k==i]
+                for p in range(len(t1)-1):
+                    for q in range(len(t1)-p-1):
+                        if s[t1[p]:t1[p+q+1]+1] == s[t1[p]:t1[p+q+1]+1][::-1] and len(s[t1[p]:t1[p+q+1]+1])>len(ans):
+                            ans=s[t1[p]:t1[p+q+1]+1]
+                    
+            
+            return ans
